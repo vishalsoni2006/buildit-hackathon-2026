@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildIt 2026 | Mozilla Firefox Club • VIT Bhopal University, India</title>
+  <meta name="description" content="BuildIt 2026 is the flagship hackathon organized by Mozilla Firefox Club at VIT Bhopal University, India. Join 1,500+ builders for 12 hours of relentless creation.">
+  <link rel="icon" type="image/png" href="/mfc-logo.png">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <link rel="stylesheet" href="/src/styles/components.css">
+</head>
+<body>
+
+  <!-- Ambient Visual FX Layers -->
+  <canvas id="particles-canvas"></canvas>
+  <div class="noise-overlay"></div>
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+  <div class="ambient-glow ambient-glow-3"></div>
+  <div class="ambient-glow ambient-glow-4"></div>
+
+  <!-- 1. Floating Pill Navigation -->
+  <div class="navbar-wrapper">
+    <nav class="navbar" id="main-nav" aria-label="Main Navigation">
+      <a href="#" class="nav-brand" aria-label="BuildIt 2026 Home">
+        <img src="/mfc-logo.png" alt="Mozilla Firefox Club Logo" class="brand-logo-img">
+        <div class="brand-text-group">
+          <div class="brand-main">BuildIt<span style="color: var(--accent-amber);">'26</span></div>
+          <div class="brand-sub">Mozilla Firefox Club • VIT Bhopal</div>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#tracks" class="nav-link">Tracks</a></li>
+        <li><a href="#schedule" class="nav-link">Schedule</a></li>
+        <li><a href="#prizes" class="nav-link">Prizes</a></li>
+        <li><a href="#teammates" class="nav-link">Team Finder</a></li>
+        <li><a href="#judges" class="nav-link">Judges</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Guest Actions -->
+        <div id="nav-guest-group" style="display: flex; align-items: center; gap: 0.6rem;">
+          <button class="btn btn-secondary nav-login-btn" id="nav-login-btn" style="padding: 0.5rem 0.95rem; font-size: 0.85rem;">
+            <span>🔑 Login</span>
+          </button>
+          <button class="btn btn-primary nav-cta-btn open-reg-modal">
+            Apply Now →
+          </button>
+        </div>
+
+        <!-- Authenticated Participant Actions -->
+        <div id="nav-auth-group" style="display: none; align-items: center; gap: 0.6rem;">
+          <button class="btn btn-primary nav-dashboard-btn" id="nav-dashboard-btn" style="position: relative; padding: 0.5rem 1rem; font-size: 0.85rem;">
+            <span>⚡ My Dashboard (<span id="nav-user-name">User</span>)</span>
+            <span id="nav-requests-dot" class="nav-request-dot" style="display: none;"></span>
+          </button>
+          <button class="btn btn-secondary nav-logout-btn" id="nav-logout-btn" title="Sign out" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;">
+            <span>Logout</span>
+          </button>
+        </div>
+
+        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-nav-menu" style="display: none; position: fixed; inset: 0; background: rgba(7, 8, 12, 0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;">
+    <a href="#tracks" class="nav-link" style="font-size: 1.5rem;">Tracks</a>
+    <a href="#schedule" class="nav-link" style="font-size: 1.5rem;">Schedule</a>
+    <a href="#prizes" class="nav-link" style="font-size: 1.5rem;">Prizes</a>
+    <a href="#teammates" class="nav-link" style="font-size: 1.5rem;">Team Finder</a>
+    <a href="#judges" class="nav-link" style="font-size: 1.5rem;">Judges</a>
+    <a href="#faq" class="nav-link" style="font-size: 1.5rem;">FAQ</a>
+    <button class="btn btn-primary open-reg-modal" style="margin-top: 1rem;">Apply for BuildIt '26 →</button>
+  </div>
+
+  <main>
+    <!-- 2. Hero Section - Full Size Cinematic Dashboard Backdrop -->
+    <section class="hero-section" id="hero">
+      <!-- Full Size Dashboard Background Image & Cinematic Lighting Overlay -->
+      <div class="hero-backdrop-container">
+        <img src="/hero-cyber-builder.jpg" alt="Futuristic Tech Builder with Glowing Amber Visor" class="hero-backdrop-image">
+        <div class="hero-backdrop-overlay"></div>
+      </div>
+
+      <div class="container hero-container-layout">
+        
+        <!-- Left Main Column: Headline, Subtitle, CTA & Stats -->
+        <div class="hero-main-col">
+          <div class="hero-badge-container">
+            <div class="pill-tag pulse-tag">
+              <img src="/mfc-logo.png" alt="MFC" style="width: 18px; height: 18px; border-radius: 50%;">
+              <span>Mozilla Firefox Club • VIT Bhopal Presents</span>
+              <span style="opacity: 0.5;">•</span>
+              <span>Nov 14, 2026 • 12-Hour Sprint (08:00 AM – 08:00 PM IST)</span>
+            </div>
+            <div class="pill-tag" style="background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.3); color: #4ade80;">
+              <span>🇮🇳 All-India Flagship Hackathon</span>
+            </div>
+            <div class="pill-tag" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #7dd3fc;">
+              <span>📍 VIT Bhopal University, India</span>
+            </div>
+            <div id="existing-ticket-notice" style="display: none;">
+              <button class="pill-tag" style="background: rgba(34, 197, 94, 0.15); border-color: #22c55e; color: #4ade80; cursor: pointer;">
+                🎟️ View Your Holographic Pass
+              </button>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            Code The Impossible.<br>
+            <span class="hero-title-accent">Empowering India's Builders.</span>
+          </h1>
+
+          <p class="hero-description">
+            The premier All-India collegiate hackathon organized by <strong>Mozilla Firefox Club (MFC)</strong> at <strong>VIT Bhopal University, India</strong>. 
+            Exclusively for student developers, coders, and researchers across India to build for 12 hours with a <strong>₹50,000 cash prize pool</strong>, trophies, and direct faculty mentorship.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary open-reg-modal">
+              <span>Register For BuildIt</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <a href="#tracks" class="btn btn-secondary">
+              <span>Explore Tracks</span>
+            </a>
+            <div class="avatar-stack-container">
+              <div class="avatar-stack">
+                <div class="avatar-stack-item" style="background: #e11d48;">AS</div>
+                <div class="avatar-stack-item" style="background: #2563eb;">AV</div>
+                <div class="avatar-stack-item" style="background: #d97706;">SR</div>
+                <div class="avatar-stack-item" style="background: #059669;">+</div>
+              </div>
+              <span class="avatar-meta"><strong>1,420+</strong> Indian Builders</span>
+            </div>
+          </div>
+
+          <!-- Hero Stat Cards (Side by side matching reference image bottom-left) -->
+          <div class="hero-stats-row">
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">
+                <span class="counter-val" data-target="1420" data-suffix="+">1,420+</span>
+              </div>
+              <div class="hero-stat-label">Indian Hackers Registered</div>
+            </div>
+
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">
+                <span class="counter-val" data-target="50000" data-prefix="₹">₹50,000</span>
+              </div>
+              <div class="hero-stat-label">Total Cash Prize Pool</div>
+            </div>
+
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">
+                <span class="counter-val" data-target="12" data-suffix="h">12h</span>
+              </div>
+              <div class="hero-stat-label">12h Non-Stop Sprint</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Floating HUD Panel (Floating over the cosmic space backdrop) -->
+        <div class="hero-side-hud">
+
+          <!-- Live Countdown Timer Floating Card -->
+          <div class="hud-glass-card float-anim" id="countdown-card">
+            <div class="countdown-label">
+              <span style="color: var(--accent-amber);">⏱</span>
+              <span>Hacking Kickoff In</span>
+            </div>
+            <div class="countdown-digits">
+              <div class="countdown-unit">
+                <span class="countdown-number" id="count-days">71</span>
+                <span class="countdown-unit-label">Days</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit">
+                <span class="countdown-number" id="count-hours">09</span>
+                <span class="countdown-unit-label">Hours</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit">
+                <span class="countdown-number" id="count-mins">43</span>
+                <span class="countdown-unit-label">Mins</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-unit">
+                <span class="countdown-number" id="count-secs">18</span>
+                <span class="countdown-unit-label">Secs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Batch 1 Status Badge -->
+          <div class="hud-glass-card" style="padding: 1rem 1.4rem;">
+            <div class="hud-badge-title">
+              <span style="color: #22c55e;">●</span>
+              <span>Submissions Status</span>
+            </div>
+            <div class="hud-badge-value" style="font-size: 1.15rem; margin-top: 0.35rem;">
+              Batch 1 Selection Open
+            </div>
+            <div style="font-size: 0.775rem; color: var(--text-muted); margin-top: 0.25rem;">
+              Direct fast-track mentor review
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. Partners & Sponsors Marquee -->
+    <section class="partners-section">
+      <div class="container">
+        <div class="partners-label">Backed by pioneers shaping intelligence, infrastructure & compute</div>
+      </div>
+      <div class="marquee-container">
+        <div class="marquee-content">
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>Google Cloud</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            <span>OpenAI</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 2 22 22 22"/></svg>
+            <span>Anthropic</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg>
+            <span>Solana</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 1 21 23 21"/></svg>
+            <span>Vercel</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Supabase</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+            <span>GitHub</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h18M3 6h18M3 20h18"/></svg>
+            <span>Linear</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            <span>Figma</span>
+          </div>
+          <!-- Duplicate for seamless infinite loop -->
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>Google Cloud</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            <span>OpenAI</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 2 22 22 22"/></svg>
+            <span>Anthropic</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg>
+            <span>Solana</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 1 21 23 21"/></svg>
+            <span>Vercel</span>
+          </div>
+          <div class="partner-item">
+            <svg class="partner-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Supabase</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3.5 Organizer Spotlight: Mozilla Firefox Club & VIT Bhopal -->
+    <section class="section" style="padding: 4.5rem 0; background: rgba(12, 14, 22, 0.55); border-top: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, rgba(22, 25, 42, 0.85) 0%, rgba(13, 14, 22, 0.95) 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: var(--radius-xl); padding: 2.75rem; backdrop-filter: blur(20px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15); display: grid; grid-template-columns: auto 1fr auto; gap: 2.5rem; align-items: center;">
+          <img src="/mfc-logo.png" alt="Mozilla Firefox Club VIT Bhopal" style="width: 110px; height: 110px; border-radius: 50%; box-shadow: 0 0 32px rgba(56, 189, 248, 0.6); border: 2px solid rgba(56, 189, 248, 0.5);">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.6rem;">
+              <span class="badge badge-cyan" style="font-size: 0.75rem;">ORGANIZED BY</span>
+              <span style="font-family: var(--font-mono); font-size: 0.825rem; color: var(--accent-gold);">VIT BHOPAL UNIVERSITY, MADHYA PRADESH, INDIA</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.95rem; color: #fff; margin-bottom: 0.6rem;">
+              Mozilla Firefox Club (MFC) — VIT Bhopal
+            </h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; max-width: 760px;">
+              The official Mozilla Firefox student chapter at VIT Bhopal University. Dedicated to championing open-source ethics, decentralized web technologies, machine learning innovations, and providing students across India a high-velocity platform to build real-world software.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; min-width: 180px;">
+            <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 0.85rem 1rem; text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: #38bdf8;">1,500+</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Builders Expected</div>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 0.85rem 1rem; text-align: center;">
+              <div style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 800; color: var(--accent-gold);">₹50,000</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Total Cash Prize Pool</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tracks Section -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">Innovation Arenas</div>
+          <h2 class="section-title">
+            Four Frontiers. <span class="title-accent">Limitless Impact.</span>
+          </h2>
+          <p class="section-description">
+            Choose your battleground. Each track features dedicated industry mentors, cloud compute grants, 
+            and official track winner trophies & recognition.
+          </p>
+        </div>
+
+        <div class="tracks-grid">
+          
+          <!-- Track 01 -->
+          <div class="track-card" data-track-id="ai-agents">
+            <div>
+              <div class="track-card-header">
+                <div class="track-icon-badge">⚡</div>
+                <div class="track-bounty-badge">WINNER AWARD</div>
+              </div>
+              <div class="track-number">TRACK 01</div>
+              <h3 class="track-title">Autonomous AI & Multi-Agent Systems</h3>
+              <p class="track-description">
+                Design self-reasoning AI agent swarms, multimodal cognitive workflows, local quantized SLMs, and deterministic tool-use protocols.
+              </p>
+              <div class="track-tech-stack">
+                <span class="tech-chip">LangChain</span>
+                <span class="tech-chip">MCP Protocol</span>
+                <span class="tech-chip">PyTorch</span>
+                <span class="tech-chip">vLLM</span>
+              </div>
+            </div>
+            <div class="track-card-footer">
+              <span style="font-size: 0.8rem; color: var(--text-dim);">Supported by OpenAI & Google</span>
+              <button class="track-explore-btn">
+                <span>Inspect Track</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Track 02 -->
+          <div class="track-card" data-track-id="web3-infra">
+            <div>
+              <div class="track-card-header">
+                <div class="track-icon-badge">🔗</div>
+                <div class="track-bounty-badge">WINNER AWARD</div>
+              </div>
+              <div class="track-number">TRACK 02</div>
+              <h3 class="track-title">Decentralized Protocols & Web3 Infrastructure</h3>
+              <p class="track-description">
+                Engineer trustless zero-knowledge proofs, agent-to-agent micro-settlement rails, decentralized compute networks, and frictionless on-chain UX.
+              </p>
+              <div class="track-tech-stack">
+                <span class="tech-chip">Solana</span>
+                <span class="tech-chip">Rust</span>
+                <span class="tech-chip">ZK-SNARKs</span>
+                <span class="tech-chip">Supabase</span>
+              </div>
+            </div>
+            <div class="track-card-footer">
+              <span style="font-size: 0.8rem; color: var(--text-dim);">Supported by Solana Foundation</span>
+              <button class="track-explore-btn">
+                <span>Inspect Track</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Track 03 -->
+          <div class="track-card" data-track-id="spatial-xr">
+            <div>
+              <div class="track-card-header">
+                <div class="track-icon-badge">🥽</div>
+                <div class="track-bounty-badge">WINNER AWARD</div>
+              </div>
+              <div class="track-number">TRACK 03</div>
+              <h3 class="track-title">Spatial Computing, XR & Cyber-Physical Tech</h3>
+              <p class="track-description">
+                Bridge code into spatial and kinetic reality. Develop WebGPU shaders, Apple Vision Pro spatial environments, drone telemetry, or haptic controllers.
+              </p>
+              <div class="track-tech-stack">
+                <span class="tech-chip">WebXR</span>
+                <span class="tech-chip">Three.js</span>
+                <span class="tech-chip">WebGPU</span>
+                <span class="tech-chip">ROS 2</span>
+              </div>
+            </div>
+            <div class="track-card-footer">
+              <span style="font-size: 0.8rem; color: var(--text-dim);">Hardware Loaner Lab Included</span>
+              <button class="track-explore-btn">
+                <span>Inspect Track</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Track 04 -->
+          <div class="track-card" data-track-id="tech-humanity">
+            <div>
+              <div class="track-card-header">
+                <div class="track-icon-badge">🌱</div>
+                <div class="track-bounty-badge">WINNER AWARD</div>
+              </div>
+              <div class="track-number">TRACK 04</div>
+              <h3 class="track-title">Tech for Humanity, Bio & Climate Intelligence</h3>
+              <p class="track-description">
+                Tackle existential challenges with engineering rigor: geospatial wildfire containment, assistive neural speech decoders, and clean micro-grids.
+              </p>
+              <div class="track-tech-stack">
+                <span class="tech-chip">TensorFlow</span>
+                <span class="tech-chip">GeoSpatial APIs</span>
+                <span class="tech-chip">FastAPI</span>
+                <span class="tech-chip">IoT</span>
+              </div>
+            </div>
+            <div class="track-card-footer">
+              <span style="font-size: 0.8rem; color: var(--text-dim);">Direct Accelerator Fast-Track</span>
+              <button class="track-explore-btn">
+                <span>Inspect Track</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Interactive 12-Hour Schedule -->
+    <section class="section" id="schedule" style="background: rgba(10, 11, 18, 0.4);">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">12-Hour Sprint Protocol</div>
+          <h2 class="section-title">
+            Engineered For <span class="title-accent">Peak Velocity.</span>
+          </h2>
+          <p class="section-description">
+            Filter events across all three phases of the 12-hour sprint (08:00 AM – 08:00 PM IST), and bookmark key milestones to build your roadmap.
+          </p>
+        </div>
+
+        <!-- Day Selector Tabs -->
+        <div class="schedule-nav">
+          <button class="day-tab-btn active" data-day="day1">
+            <span>Phase 1</span>
+            <span style="opacity: 0.6; font-size: 0.8rem;">(08:00 AM - 12:00 PM) Kickoff & Sprint Launch</span>
+          </button>
+          <button class="day-tab-btn" data-day="day2">
+            <span>Phase 2</span>
+            <span style="opacity: 0.6; font-size: 0.8rem;">(12:00 PM - 04:00 PM) Midday Build & Mentoring</span>
+          </button>
+          <button class="day-tab-btn" data-day="day3">
+            <span>Phase 3</span>
+            <span style="opacity: 0.6; font-size: 0.8rem;">(04:00 PM - 08:00 PM) Code Freeze & Grand Finale</span>
+          </button>
+        </div>
+
+        <!-- Category Filter Chips -->
+        <div class="schedule-filters">
+          <button class="filter-chip-btn active" data-category="all">All Events</button>
+          <button class="filter-chip-btn" data-category="keynote">Keynotes & Pitches</button>
+          <button class="filter-chip-btn" data-category="workshop">Workshops</button>
+          <button class="filter-chip-btn" data-category="milestone">Milestones & Deadlines</button>
+          <button class="filter-chip-btn" data-category="food">Food & Snacks</button>
+          <button class="filter-chip-btn" data-category="bookmarks">
+            🔖 My Bookmarks (<span id="schedule-bookmark-count">0</span>)
+          </button>
+        </div>
+
+        <!-- Dynamic Timeline Container -->
+        <div class="schedule-timeline" id="schedule-timeline">
+          <!-- Populated by schedule.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Prizes & Bounty Vault -->
+    <section class="section" id="prizes">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">Vault & Honors</div>
+          <h2 class="section-title">
+            ₹50,000 Cash Prize Pool & <span class="title-accent">Official Honors.</span>
+          </h2>
+          <p class="section-description">
+            Direct cash prizes distributed to India's top 3 collegiate teams, accompanied by custom engraved BuildIt trophies, certificates of national merit, and direct mentorship.
+          </p>
+        </div>
+
+        <!-- 3-Tier Podium -->
+        <div class="prizes-podium-grid">
+          
+          <!-- 2nd Place -->
+          <div class="prize-card">
+            <span class="prize-rank-badge rank-2">2nd Place • 1st Runner Up</span>
+            <div class="prize-amount">₹15,000</div>
+            <div class="prize-title">Silver Vanguard</div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">For the team demonstrating exceptional technical rigor, algorithmic depth, and standout execution.</p>
+            <ul class="prize-perks-list">
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span><strong>₹15,000</strong> Direct Cash Prize</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Custom Silver BuildIt Trophy & Certificates</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Cloud compute credits & developer tooling pack</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Exclusive Mozilla Firefox Club Swag Kit</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 1st Place Champion -->
+          <div class="prize-card prize-card-champion">
+            <img src="/buildit-trophy.jpg" alt="BuildIt 2026 Grand Champion Trophy" class="prize-trophy-img">
+            <span class="prize-rank-badge rank-1">🏆 Grand Champion (All-India)</span>
+            <div class="prize-amount" style="color: var(--accent-gold); text-shadow: 0 0 25px rgba(255, 140, 0, 0.5);">₹25,000</div>
+            <div class="prize-title">Apex Pioneer Prize</div>
+            <p style="font-size: 0.875rem; color: var(--text-secondary);">Awarded to the overall most audacious, flawless, and technically transcendent hack of BuildIt 2026.</p>
+            <ul class="prize-perks-list">
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon" style="color: var(--accent-gold);">★</span>
+                <span><strong>₹25,000 Direct Cash Prize</strong></span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon" style="color: var(--accent-gold);">★</span>
+                <span><strong>Laser-Engraved Acrylic Cyber Trophy</strong></span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon" style="color: var(--accent-gold);">★</span>
+                <span>Certificate of National Excellence from MFC & VIT Bhopal</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon" style="color: var(--accent-gold);">★</span>
+                <span>Incubation & Mentorship support from VIT Bhopal E-Cell</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon" style="color: var(--accent-gold);">★</span>
+                <span>VIP MFC Swag Vault & Developer Hardware Kit</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3rd Place -->
+          <div class="prize-card">
+            <span class="prize-rank-badge rank-3">3rd Place • 2nd Runner Up</span>
+            <div class="prize-amount">₹10,000</div>
+            <div class="prize-title">Bronze Vanguard</div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">For extraordinary ingenuity, creative presentation, and standout engineering execution.</p>
+            <ul class="prize-perks-list">
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span><strong>₹10,000</strong> Direct Cash Prize</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Custom Bronze BuildIt Trophy & Certificates</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Hardware Dev Swag Pack & Access Pass</span>
+              </li>
+              <li class="prize-perk-item">
+                <span class="prize-perk-icon">✓</span>
+                <span>Exclusive Mozilla Firefox Club Goodies</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Secondary Special Bounties -->
+        <div class="bounties-subgrid">
+          <div class="bounty-card">
+            <div class="bounty-icon">🎯</div>
+            <div class="bounty-info">
+              <h4>Best Solo Hacker</h4>
+              <p>For the single-person team that built the impossible in 12 hours.</p>
+              <div class="bounty-val">Mechanical Keyboard + Trophy</div>
+            </div>
+          </div>
+
+          <div class="bounty-card">
+            <div class="bounty-icon">🎨</div>
+            <div class="bounty-info">
+              <h4>Best UI/UX Polish</h4>
+              <p>Rewarding fluid micro-interactions, accessibility, and visual wow-factor.</p>
+              <div class="bounty-val">Figma Pro Annual + Trophy</div>
+            </div>
+          </div>
+
+          <div class="bounty-card">
+            <div class="bounty-icon">✨</div>
+            <div class="bounty-info">
+              <h4>Best All-Girls Team</h4>
+              <p>Celebrating extraordinary women in engineering and software innovation.</p>
+              <div class="bounty-val">MFC Women-In-Tech Trophy + Swag</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Teammate Matcher & Hacker Hub -->
+    <section class="section" id="teammates" style="background: rgba(10, 11, 18, 0.5);">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">Networking Hub</div>
+          <h2 class="section-title">
+            Assemble Your <span class="title-accent">Dream Squad.</span>
+          </h2>
+          <p class="section-description">
+            Need a frontend wizard, an ML research powerhouse, or a Rust systems engineer? 
+            Browse active hacker profiles or list yourself on the live board.
+          </p>
+        </div>
+
+        <div class="team-matcher-controls">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="matcher-search-input" class="search-input" placeholder="Search by name, skill (e.g. PyTorch, Rust, Three.js)...">
+          </div>
+
+          <div class="role-filter-chips">
+            <button class="filter-chip-btn role-chip active" data-role="all">All Roles</button>
+            <button class="filter-chip-btn role-chip" data-role="aiml">AI / ML</button>
+            <button class="filter-chip-btn role-chip" data-role="frontend">Frontend / Web</button>
+            <button class="filter-chip-btn role-chip" data-role="backend">Backend / Systems</button>
+            <button class="filter-chip-btn role-chip" data-role="web3">Web3 / Crypto</button>
+            <button class="filter-chip-btn role-chip" data-role="design">UI/UX Design</button>
+          </div>
+
+          <button class="btn btn-primary" id="open-post-hacker-modal" style="padding: 0.65rem 1.4rem; font-size: 0.85rem;">
+            <span>+ Post Your Profile</span>
+          </button>
+        </div>
+
+        <!-- Hacker Grid (populated dynamically) -->
+        <div class="teammate-grid" id="teammate-grid">
+          <!-- Populated by teamMatcher.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. World-Class Judges & Mentors -->
+    <section class="section" id="judges">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">The Council</div>
+          <h2 class="section-title">
+            Judged by Leaders <span class="title-accent">In The Arena.</span>
+          </h2>
+          <p class="section-description">
+            Present your architecture directly to veteran AI researchers, founder alumni, and partner VCs who have scaled billion-user systems.
+          </p>
+        </div>
+
+        <div class="judges-grid judges-grid-dual">
+          
+          <!-- Judge 1: Dr. Balaji A -->
+          <div class="judge-card judge-card-featured">
+            <div class="judge-avatar-wrapper">
+              <img src="/judge-dr-balaji-a.png" alt="Dr. Balaji A" class="judge-avatar">
+              <div class="judge-badge-logo">🎓</div>
+            </div>
+            <h4 class="judge-name">Dr. Balaji A</h4>
+            <div class="judge-role">Professor & Research Faculty</div>
+            <div class="judge-org">School of Computing Science & Engineering, VIT Bhopal University</div>
+            <div class="judge-expertise">
+              <span class="badge badge-amber">Cloud Systems</span>
+              <span class="badge badge-cyan">Distributed Architectures</span>
+              <span class="badge badge-green">Web Engineering</span>
+            </div>
+          </div>
+
+          <!-- Judge 2: Dr. Suresh Dara -->
+          <div class="judge-card judge-card-featured">
+            <div class="judge-avatar-wrapper">
+              <img src="/judge-dr-suresh-dara.png" alt="Dr. Suresh Dara" class="judge-avatar">
+              <div class="judge-badge-logo">🎓</div>
+            </div>
+            <h4 class="judge-name">Dr. Suresh Dara</h4>
+            <div class="judge-role">Professor & Research Faculty</div>
+            <div class="judge-org">School of Computing Science & Engineering, VIT Bhopal University</div>
+            <div class="judge-expertise">
+              <span class="badge badge-amber">Graph Theory</span>
+              <span class="badge badge-cyan">Algorithm Design</span>
+              <span class="badge badge-green">Data Analytics</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. FAQ Section with Live Search -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <div class="pill-tag">Clear Protocols</div>
+          <h2 class="section-title">
+            Frequently Asked <span class="title-accent">Questions.</span>
+          </h2>
+          <p class="section-description">
+            Everything you need to know about eligibility, travel grants, hardware labs, and team formations.
+          </p>
+        </div>
+
+        <div class="faq-search-wrapper">
+          <div class="search-input-wrapper" style="max-width: 100%;">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="faq-search-input" class="search-input" placeholder="Quick search FAQs (e.g. travel, solo, IP rights, hardware)...">
+          </div>
+        </div>
+
+        <div class="faq-accordion-list">
+          
+          <div class="faq-item open">
+            <button class="faq-question-btn">
+              <span>Who is eligible to participate in BuildIt 2026?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              BuildIt 2026 is an All-India collegiate hackathon exclusively open to undergraduate & postgraduate students, engineering scholars, and student developers residing in India. Students from all Indian universities and institutes (IITs, NITs, IIITs, VITs, BITS, and state institutions across all states) are eligible to register!
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Is BuildIt completely free? Are meals & swag provided?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              100% free! Thanks to Mozilla Firefox Club and our university sponsors, there are zero participation fees. In-person hackers at VIT Bhopal receive continuous meals, midnight chai, energy snacks, unlimited coffee, and an exclusive BuildIt kit with official certificates.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Can I participate solo, or what is the team size limit?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Teams can consist of 1 to 4 Indian hackers. Solo participants are eligible for all track awards as well as our dedicated Best Solo Hacker award. If you want teammates, use our built-in Team Matcher board or join our Day 1 formation mixer!
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Who owns the intellectual property of projects built?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              You do! 100% of all intellectual property, code, designs, and startup potential remain solely with you and your team. Neither the organizing club nor the sponsors claim any ownership rights over your creation.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>What hardware will be provided in the hardware lab?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Our hardware loaner depot includes Apple Vision Pro headsets, Meta Quest 3, Raspberry Pi 5 kits, NVIDIA Jetson Orin Nano modules, Arduino sensor kits, logic analyzers, and soldering stations staffed by hardware mentors.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question-btn">
+              <span>Are travel stipends available for non-local hackers across India?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Yes! Travel assistance reimbursements (train/bus fares) are provided for selected outstation Indian finalists traveling to the VIT Bhopal Central Campus, sponsored by our organizing committee.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 10. Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="#" class="nav-brand">
+            <img src="/mfc-logo.png" alt="Mozilla Firefox Club Logo" class="brand-logo-img">
+            <div class="brand-text-group">
+              <div class="brand-main">BuildIt<span style="color: var(--accent-amber);">'26</span></div>
+              <div class="brand-sub">Mozilla Firefox Club • VIT Bhopal</div>
+            </div>
+          </a>
+          <p>
+            The premier national & global hackathon organized by <strong>Mozilla Firefox Club (MFC)</strong> at <strong>VIT Bhopal University, India</strong>. Empowering student visionaries to engineer the next paradigm of software, decentralized systems, and physical intelligence.
+          </p>
+          <div style="display: flex; gap: 0.8rem; margin-top: 1.5rem;">
+            <a href="#" class="icon-btn" aria-label="Discord">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            </a>
+            <a href="#" class="icon-btn" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="icon-btn" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#tracks">Tracks & Bounties</a></li>
+            <li><a href="#schedule">12-Hour Schedule</a></li>
+            <li><a href="#prizes">Prize Vault</a></li>
+            <li><a href="#teammates">Teammate Matcher</a></li>
+            <li><a href="#judges">Judges & Mentors</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#faq">Hacker FAQ</a></li>
+            <li><a href="#" class="open-reg-modal">Hacker Pass Login</a></li>
+            <li><a href="#">Hardware Lab Catalog</a></li>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Devpost Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Community</h5>
+          <ul>
+            <li><a href="#">Join Official Discord</a></li>
+            <li><a href="#">Sponsor Prospectus</a></li>
+            <li><a href="#">Volunteer as Mentor</a></li>
+            <li><a href="#">Organizer Club GitHub</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 BuildIt Hackathon • Presented with ❤️ by <strong>Mozilla Firefox Club (MFC)</strong>, VIT Bhopal University, India.
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e;"></span>
+          <span>All Systems Nominal • Registration Gateway Active</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & POPUPS ================= -->
+
+  <!-- Track Details Modal -->
+  <div class="modal-backdrop" id="track-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="track-modal-close" aria-label="Close Modal">✕</button>
+      <div id="track-modal-content">
+        <!-- Injected by tracks.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Step Registration Wizard Modal -->
+  <div class="modal-backdrop" id="reg-modal">
+    <div class="modal-card" style="max-width: 650px;">
+      <button class="modal-close-btn" id="reg-modal-close" aria-label="Close Registration">✕</button>
+      
+      <div id="registration-wizard-content">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <span class="badge badge-amber" style="font-size: 0.75rem;">OFFICIAL APPLICATION</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.75rem; color: #fff; margin-top: 0.4rem;">
+            Join BuildIt 2026
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Complete the 3 quick steps below to join the 12-hour hackathon.</p>
+        </div>
+
+        <!-- Wizard Step Nodes Indicator -->
+        <div class="wizard-steps">
+          <div class="wizard-step-node active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Pioneer</span>
+          </div>
+          <div class="wizard-step-node" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Track & Role</span>
+          </div>
+          <div class="wizard-step-node" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Team & Mode</span>
+          </div>
+        </div>
+
+        <form id="reg-form">
+          <!-- Step 1: Personal Info -->
+          <div class="wizard-step-panel" id="step-panel-1">
+            <div style="margin-bottom: 1.25rem;">
+              <button type="button" class="btn-google" id="btn-google-register">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                </svg>
+                <span id="google-reg-text">Auto-fill Personal Info with Google</span>
+              </button>
+              <div id="google-prefill-status" style="display: none; margin-top: 0.6rem; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.8rem; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); color: #34d399;"></div>
+              <div class="auth-divider">
+                <span>or fill registration form</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-name">Full Legal Name *</label>
+                <input type="text" id="reg-name" class="form-input" placeholder="e.g. Aarav Sharma" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-email">Primary Email *</label>
+                <input type="email" id="reg-email" class="form-input" placeholder="e.g. aarav@vitbhopal.ac.in" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-password">Personal Password / Security Access Key *</label>
+                <input type="password" id="reg-password" class="form-input" placeholder="Set a private password for your dashboard" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-school">College / University *</label>
+                <input type="text" id="reg-school" class="form-input" placeholder="e.g. VIT Bhopal University / IIT Bombay" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-github">GitHub / Portfolio URL</label>
+                <input type="text" id="reg-github" class="form-input" placeholder="https://github.com/...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-discord">Discord Handle</label>
+                <input type="text" id="reg-discord" class="form-input" placeholder="e.g. builder#4021">
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Track & Experience -->
+          <div class="wizard-step-panel" id="step-panel-2" style="display: none;">
+            <div class="form-group">
+              <label class="form-label" for="reg-track">Target Innovation Track *</label>
+              <select id="reg-track" class="form-select">
+                <option value="ai-agents">Track 01: Autonomous AI & Multi-Agent Systems</option>
+                <option value="web3-infra">Track 02: Decentralized Protocols & Web3 Infrastructure</option>
+                <option value="spatial-xr">Track 03: Spatial Computing, XR & Cyber-Physical Tech</option>
+                <option value="tech-humanity">Track 04: Tech for Humanity & Climate Intelligence</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-exp">Hackathon Experience Tier</label>
+                <select id="reg-exp" class="form-select">
+                  <option value="beginner">First-Time Hacker</option>
+                  <option value="intermediate" selected>Intermediate (1-3 Hackathons)</option>
+                  <option value="veteran">Veteran Builder (4+ Hackathons)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-role">Primary Role</label>
+                <select id="reg-role" class="form-select">
+                  <option value="Fullstack">Fullstack Engineer</option>
+                  <option value="AI Engineer">AI / ML Researcher</option>
+                  <option value="Systems">Systems / Backend</option>
+                  <option value="Smart Contracts">Smart Contracts / Web3</option>
+                  <option value="Designer">UI/UX & Product Designer</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-stack">Primary Programming Languages / Tools</label>
+              <input type="text" id="reg-stack" class="form-input" placeholder="e.g. Python, TypeScript, PyTorch, Rust">
+            </div>
+          </div>
+
+          <!-- Step 3: Team Affiliation & Participation Mode -->
+          <div class="wizard-step-panel" id="step-panel-3" style="display: none;">
+            <div class="form-group">
+              <label class="form-label" for="reg-team-name">Team Name (if established)</label>
+              <input type="text" id="reg-team-name" class="form-input" placeholder="e.g. Neural Vanguard">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-teammates">Co-Hackers' Emails or Handles (comma separated)</label>
+              <textarea id="reg-teammates" class="form-textarea" rows="2" placeholder="aarav@vitbhopal.ac.in, priya@iitb.ac.in..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-mode">Participation Mode *</label>
+              <select id="reg-mode" class="form-select">
+                <option value="In-Person (VIT Bhopal Central Campus)">In-Person (VIT Bhopal Central Campus, India)</option>
+                <option value="Virtual (Pan-India)">Virtual (Pan-India Live Stream & Discord)</option>
+              </select>
+            </div>
+            <div style="background: rgba(255, 140, 0, 0.08); border: 1px solid rgba(255, 140, 0, 0.25); border-radius: var(--radius-md); padding: 0.85rem; font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.75rem;">
+              ✓ By submitting, you agree to uphold our inclusive Hacker Code of Conduct and commit to attending the 12-hour sprint.
+            </div>
+          </div>
+
+          <!-- Wizard Controls -->
+          <div class="wizard-controls">
+            <button type="button" class="btn btn-secondary" id="wizard-prev-btn" style="visibility: hidden;">
+              ← Back
+            </button>
+            <button type="button" class="btn btn-primary" id="wizard-next-btn">
+              Continue →
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Post Teammate Listing Modal -->
+  <div class="modal-backdrop" id="post-hacker-modal">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="close-post-hacker-modal" aria-label="Close Modal">✕</button>
+      <div style="margin-bottom: 1.5rem;">
+        <span class="badge badge-amber">TEAM FINDER DIRECTORY</span>
+        <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-top: 0.3rem;">
+          Post Your Teammate Listing
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">Let other builders across India find and ping you for team formation.</p>
+      </div>
+
+      <form id="post-hacker-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="post-name">Your Name *</label>
+            <input type="text" id="post-name" class="form-input" placeholder="e.g. Aarav Sharma" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="post-email">Registered Account Email *</label>
+            <input type="email" id="post-email" class="form-input" placeholder="e.g. aarav@vitbhopal.ac.in" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="post-role">Display Role Title *</label>
+            <input type="text" id="post-role" class="form-input" placeholder="e.g. AI / ML Researcher" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="post-category">Category *</label>
+            <select id="post-category" class="form-select">
+              <option value="aiml">AI / ML</option>
+              <option value="frontend">Frontend / Web</option>
+              <option value="backend">Backend / Systems</option>
+              <option value="web3">Web3 / Crypto</option>
+              <option value="design">UI/UX Design</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="post-tz">Your City / College (India)</label>
+            <input type="text" id="post-tz" class="form-input" placeholder="e.g. IST (Bhopal / VIT Bhopal)">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="post-contact">Discord or Contact Handle *</label>
+            <input type="text" id="post-contact" class="form-input" placeholder="e.g. aarav_sharma#4021 or @aarav_in" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-skills">Skills & Stack (comma-separated) *</label>
+          <input type="text" id="post-skills" class="form-input" placeholder="e.g. Python, PyTorch, LangChain, React" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="post-pitch">What do you want to build? (One-sentence pitch) *</label>
+          <textarea id="post-pitch" class="form-textarea" rows="2" placeholder="e.g. Building an autonomous agent framework for local LLMs..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Publish to Live Board ⚡
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Connect with Builder Modal -->
+  <div class="modal-backdrop" id="connect-builder-modal">
+    <div class="modal-card" style="max-width: 500px;">
+      <button class="modal-close-btn" id="close-connect-builder-modal" aria-label="Close Modal">✕</button>
+      <div style="margin-bottom: 1.25rem;">
+        <span class="badge badge-amber">TEAM FINDER CONNECT</span>
+        <h3 id="connect-modal-title" style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-top: 0.35rem;">
+          Connect with Builder
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem;">
+          Send an official connection request directly to this builder's <strong>Requests tab</strong> in their dashboard.
+        </p>
+      </div>
+
+      <form id="connect-builder-form">
+        <input type="hidden" id="connect-target-id">
+        <input type="hidden" id="connect-target-email">
+        <input type="hidden" id="connect-target-name">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="connect-sender-name">Your Name *</label>
+            <input type="text" id="connect-sender-name" class="form-input" placeholder="e.g. Devansh Gupta" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="connect-sender-email">Your Registered Email *</label>
+            <input type="email" id="connect-sender-email" class="form-input" placeholder="e.g. devansh@vitbhopal.ac.in" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="connect-sender-role">Your Role / Primary Stack</label>
+          <input type="text" id="connect-sender-role" class="form-input" placeholder="e.g. AI Researcher (PyTorch, Python)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="connect-message">Message / Pitch Note *</label>
+          <textarea id="connect-message" class="form-textarea" rows="2" placeholder="Hi! I saw your listing on the Team Finder and would love to build our 12-hour hack together..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary" id="cancel-connect-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submit-connect-btn">
+            Send Connection Request ⚡
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Personal Credentials Login Modal -->
+  <div class="modal-backdrop" id="login-modal">
+    <div class="modal-card" style="max-width: 480px;">
+      <button class="modal-close-btn" id="close-login-modal" aria-label="Close Modal">✕</button>
+      
+      <div style="margin-bottom: 1.5rem; text-align: center;">
+        <span class="badge badge-amber" style="font-size: 0.75rem;">AUTHENTICATION GATEWAY</span>
+        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-top: 0.4rem;">
+          Participant Login
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem;">
+          Sign in with your personal credentials to manage your team, view invite codes, and approve requests.
+        </p>
+      </div>
+
+      <!-- Google One-Click Authentication Button -->
+      <div style="margin-bottom: 1.1rem;">
+        <button type="button" class="btn-google" id="btn-google-login">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.35 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span id="google-login-text">Sign in with Google</span>
+        </button>
+      </div>
+
+      <div id="google-fallback-notice" style="display: none; background: rgba(66, 133, 244, 0.08); border: 1px solid rgba(66, 133, 244, 0.3); border-radius: var(--radius-sm); padding: 0.75rem 0.85rem; margin-bottom: 1rem;">
+        <div style="font-size: 0.78rem; color: #93c5fd; margin-bottom: 0.5rem; line-height: 1.4;">
+          <strong>Firebase Project: hackathon-project-6070d</strong><br>
+          Live Google popup requires enabling Google provider under <em>Firebase Console ➔ Authentication ➔ Sign-in method</em>.
+        </div>
+        <button type="button" class="btn btn-outline-amber btn-sm" id="btn-google-demo-login" style="width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.4rem 0.8rem;">
+          ⚡ Continue as Vikram Malhotra (Google Verified)
+        </button>
+      </div>
+
+      <div class="auth-divider">
+        <span>or sign in with credentials</span>
+      </div>
+
+
+      <div id="login-modal-notice" style="display: none; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.5); color: #fbbf24; font-size: 0.88rem; font-weight: 700; padding: 0.75rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1rem; text-align: center;">
+        Login first to connect
+      </div>
+
+      <div id="login-error" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 0.82rem; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem;"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Registered Email Address *</label>
+          <input type="email" id="login-email" class="form-input" placeholder="e.g. aarav@vitbhopal.ac.in" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Personal Password / Security Key *</label>
+          <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <span>Secure Sign In →</span>
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.25rem; font-size: 0.82rem; color: var(--text-muted);">
+        Don't have an account yet? 
+        <a href="#" class="open-reg-modal" style="color: var(--accent-gold); font-weight: 600; text-decoration: none;">Register for BuildIt →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Participant Dashboard Modal -->
+  <div class="modal-backdrop" id="participant-dashboard-modal">
+    <div class="modal-card modal-card-wide" style="max-width: 860px; max-height: 90vh; overflow-y: auto;">
+      <button class="modal-close-btn" id="close-dashboard-modal" aria-label="Close Modal">✕</button>
+
+      <!-- Dashboard Header (Private Profile Badge) -->
+      <div class="dashboard-header">
+        <div class="dashboard-user-info">
+          <div class="participant-avatar-lg" id="dash-header-avatar">AS</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <h3 id="dash-header-name" style="font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin: 0;">Aarav Sharma</h3>
+              <span class="badge badge-amber" style="font-size: 0.72rem;">AUTHENTICATED PARTICIPANT</span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+              <span id="dash-header-email">aarav@vitbhopal.ac.in</span> • <span id="dash-header-college">VIT Bhopal University</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-top: 0.2rem;">
+              Ticket ID: <span id="dash-header-ticket">BLD-2026-1084-VIP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tabs Navigation -->
+      <div class="dashboard-tabs-bar">
+        <button class="dashboard-tab-btn active" data-tab="team">
+          <span>👥 My Team & Add Teammates</span>
+        </button>
+        <button class="dashboard-tab-btn" data-tab="requests">
+          <span>📬 Requests & Invites</span>
+          <span class="badge-count" id="dash-requests-badge" style="display: none;">0</span>
+        </button>
+        <button class="dashboard-tab-btn" data-tab="pass">
+          <span>🎟️ Official Team Pass</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: My Team & Add Teammates -->
+      <div class="dashboard-tab-panel active" id="dash-tab-team">
+        <!-- Team Status / Confirmation Banner -->
+        <div id="dash-team-status-banner"></div>
+
+        <!-- Team Overview Banner -->
+        <div class="dash-team-banner">
+          <div>
+            <span class="badge" style="background: rgba(255, 140, 0, 0.15); color: var(--accent-gold); font-size: 0.72rem;">ACTIVE SQUAD</span>
+            <h4 id="dash-team-name" style="font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin: 0.35rem 0 0.2rem;">
+              Neural Vanguard
+            </h4>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              Track: <span id="dash-team-track" style="color: #38bdf8;">Autonomous AI & Multi-Agent Systems</span>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div id="dash-team-count" class="badge badge-amber" style="font-size: 0.9rem; padding: 0.35rem 0.85rem;">
+              1/4 Members
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Max 4 Hackers</div>
+          </div>
+        </div>
+
+        <!-- Add Teammates Search (Strictly queries registered participants in database) -->
+        <div class="add-teammate-section" id="dash-add-teammate-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h5 style="color: #fff; font-size: 1rem; margin: 0;">Add Registered Teammates</h5>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Database Verified Only</span>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+            Search and invite registered participants. The invitee can review and approve or decline the invitation in their private Requests tab.
+          </p>
+
+          <div style="position: relative;">
+            <input type="text" id="team-search-registered" class="form-input" placeholder="Type a registered participant's name, email or college (e.g. Ananya, Siddharth, Priya)..." autocomplete="off">
+            <div id="registered-search-results" class="registered-search-dropdown" style="display: none;"></div>
+          </div>
+
+          <!-- Alert box for invitation dispatch -->
+          <div id="invite-code-display" style="margin-top: 0.75rem;"></div>
+        </div>
+
+        <!-- Lock & Confirm Team Action Container -->
+        <div id="dash-team-lock-container"></div>
+
+        <!-- Current Team Roster -->
+        <div style="margin-top: 1.5rem;">
+          <h5 style="color: #fff; font-size: 1rem; margin-bottom: 0.75rem;">Current Team Roster</h5>
+          <div id="dash-team-roster" class="team-roster-list">
+            <!-- Rendered by dashboard.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Requests & Invites Tab -->
+      <div class="dashboard-tab-panel" id="dash-tab-requests">
+        <div style="margin-bottom: 1.25rem;">
+          <h4 style="font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin: 0 0 0.3rem;">
+            Private Team Invitations
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">
+            Review invitations sent specifically to your registered credentials. Click Approve to join the team or Decline to dismiss.
+          </p>
+        </div>
+
+        <div id="dash-requests-list">
+          <!-- Rendered by dashboard.js -->
+        </div>
+      </div>
+
+      <!-- Tab 3: Official Team Holographic Pass -->
+      <div class="dashboard-tab-panel" id="dash-tab-pass">
+        <div id="dash-team-pass-content">
+          <!-- Dynamically rendered by dashboard.js: either pending lock notice or official team holographic pass -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Main JS -->
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>
