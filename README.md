@@ -146,8 +146,4 @@ Contributions, feedback, and issues are always welcome!
 
 ---
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-Organized  by **Mozilla Firefox Club (MFC) • VIT Bhopal University**.
+Organized by **Mozilla Firefox Club (MFC) • VIT Bhopal University**.
