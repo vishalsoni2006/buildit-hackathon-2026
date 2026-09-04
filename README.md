@@ -1,11 +1,11 @@
-# ⚡ BuildIt '26 — 12-Hour National Hackathon Portal
+#  BuildIt '26 — 12-Hour National Hackathon Portal
 
 > **National Hackathon Portal organized by Mozilla Firefox Club (MFC) • VIT Bhopal University, India.**  
 > Built with modern cyberpunk glassmorphic aesthetics, real-time Firebase Firestore synchronization, Google Authentication, dynamic Team Finder, and holographic team passes.
 
 ---
 
-## 🌟 Overview
+##  Overview
 
 **BuildIt '26** is a 12-hour high-velocity national hackathon challenging student developers, designers, and systems architects across India to prototype state-of-the-art solutions across four innovation tracks.
 
@@ -16,15 +16,15 @@
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-### 1. 🛡️ Participant Portal & Dashboard
+### 1.  Participant Portal & Dashboard
 - **Personalized Access:** Secure sign-in with credentials or 1-Click Google Authentication.
 - **Squad Formation:** Team Leaders can manage roster (up to 4 members), issue secure invite codes (`BLD-XXXX`), and confirm team entries.
 - **Incoming Requests & Invites:** Centralized requests tab to accept/decline team invitations and team finder connection requests.
 - **Official Holographic Team Pass:** Generates a verifiable digital pass with dynamic QR code verification upon team finalization.
 
-### 2. ⚡ Dynamic Team Finder
+### 2.  Dynamic Team Finder
 - **Builder Directory:** Searchable by technical stack, role category (AI/ML, Frontend, Backend, Web3, Design), and campus timezone.
 - **Interactive Requests:** Send direct connection requests to registered builders with customized pitch notes.
 - **Smart Protection & Auto-Removal:**
@@ -32,19 +32,15 @@
   - Users with confirmed/locked squads receive `"Already made team"` notices.
   - Automatically hides builders once they form or join an active squad.
 
-### 3. 🔥 Firebase Firestore & Google Auth
+### 3.  Firebase Firestore & Google Auth
 - Direct integration with Firebase SDK v10 (Firestore Database & Firebase Authentication).
 - Automatically synchronizes registered participants, team rosters, and invite requests to cloud collections (`participants`, `teams`, `requests`).
 - Live fallback and local resilience for seamless offline/online transitions.
 
-### 4. 💻 Interactive Hacker CLI Terminal
+### 4.  Interactive Hacker CLI Terminal
 - Built-in retro cyberpunk terminal accessible via `~` hotkey or floating action button.
 - Supports interactive commands: `help`, `tracks`, `schedule`, `prizes`, `team`, `status`, `matrix`, `clear`, `exit`.
 
-### 5. 🎨 Cyberpunk Glassmorphic Design
-- Pure Vanilla CSS design tokens with custom HSL palettes (Amber, Gold, Cyan, Dark Surface).
-- Ambient backdrop glow effects, interactive micro-animations, particle canvas, and holographic foil reflections.
-- Integrated sound effects engine (`SoundEngine`) for clicks, confirmations, and alerts.
 
 ---
 
@@ -58,7 +54,7 @@
 
 ---
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 hackathon_website/
@@ -86,7 +82,7 @@ hackathon_website/
 
 ---
 
-## 🏁 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v18.0.0 or higher)
@@ -117,7 +113,7 @@ The optimized production bundle will be generated in the `dist/` directory.
 
 ---
 
-## 🔑 Demo & Test Accounts
+##  Demo & Test Accounts
 
 The portal comes pre-seeded with registered student participants for demonstration and testing:
 
@@ -130,7 +126,7 @@ The portal comes pre-seeded with registered student participants for demonstrati
 
 ---
 
-## 📜 Innovation Tracks
+## Innovation Tracks
 
 1. **Track 01: Autonomous AI & Multi-Agent Systems** — Agentic workflows, quantized SLMs, self-healing codebases.
 2. **Track 02: Decentralized Protocols & Web3 Infrastructure** — Zero-knowledge identity, decentralized compute, cross-chain verification.
@@ -139,7 +135,7 @@ The portal comes pre-seeded with registered student participants for demonstrati
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions, feedback, and issues are always welcome!
 1. Fork the Project
@@ -150,8 +146,8 @@ Contributions, feedback, and issues are always welcome!
 
 ---
 
-## 📄 License
+## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-Organized with ❤️ by **Mozilla Firefox Club (MFC) • VIT Bhopal University**.
+Organized  by **Mozilla Firefox Club (MFC) • VIT Bhopal University**.
